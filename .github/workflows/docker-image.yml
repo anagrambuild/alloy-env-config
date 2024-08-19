@@ -32,5 +32,5 @@ jobs:
         context: .
         push: true
         tags: |
-          ghcr.io/${{ github.repository_owner }}/alloyenv:latest
+          ghcr.io/${{ github.repository_owner }}/alloyenv:${{ github.sha }}
         platforms: linux/amd64 
