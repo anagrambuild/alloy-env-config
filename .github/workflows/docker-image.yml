@@ -14,5 +14,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag alloyenv:$(date +%s)
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build and Push Docker Image
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        push: true
+        tags: |
+          ghcr.io/${{ github.repository_owner }}/alloyenv:$(date +%s)
+        platforms: linux/amd64 
