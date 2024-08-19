@@ -1,5 +1,9 @@
 name: Docker Image CI
 
+permissions:
+  contents: read
+  packages: write
+  id-token: write
 on:
   push:
     branches: [ "main" ]
@@ -7,9 +11,11 @@ on:
     branches: [ "main" ]
 
 jobs:
-
+  
   build:
-
+    permissions:
+      contents: read
+      packages: write
     runs-on: ubuntu-latest
 
     steps:
